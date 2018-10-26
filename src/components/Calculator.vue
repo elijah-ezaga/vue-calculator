@@ -53,6 +53,7 @@ export default {
                 this.performCalculation = true;
                 if (this.lastInputIsNumber) {
                     this.buffer += parseFloat(this.result);
+                    this.result = this.buffer;
                 }
 
                 this.lastInputIsNumber = false;
