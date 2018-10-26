@@ -1,4 +1,4 @@
-# hello-world
+# simple-calculator
 
 ## Project setup
 ```
