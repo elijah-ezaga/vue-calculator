@@ -1,21 +1,7 @@
 <template>
     <div id="calculator">
         <div id="io-display">
-            <input type="text" v-model="result"
-                @keypress.96="processNumber('0')"
-                @keypress.97="processNumber('1')"
-                @keypress.98="processNumber('2')"
-                @keypress.99="processNumber('3')"
-                @keypress.100="processNumber('4')"
-                @keypress.101="processNumber('5')"
-                @keypress.102="processNumber('6')"
-                @keypress.103="processNumber('7')"
-                @keypress.104="processNumber('8')"
-                @keypress.105="processNumber('9')"
-
-                @keypress.enter.prevent="processEqual"
-                @keypress.107.prevent="processPlus"
-            />
+            <input type="text" v-model="result" @keypress="processKeyPress" />
         </div>
         <div id="buttons-panel">
             <div class="panel-row">
@@ -61,6 +47,23 @@ export default {
         }
     },
     methods: {
+        processKeyPress: function(event) {
+            event.preventDefault();
+
+            let character = event.key;
+            if (isNaN(character)) {
+                if (character === '+'){
+                    this.processPlus();
+                } else if (character === '=') {
+                    this.processEqual();
+                } else if(event.keyCode === 13) {
+                    this.processEqual();
+                }
+            } else {
+                this.processNumber(character);
+            }
+        },
+
         processPlus: function() {
             this.performCalculation = true;
             if (this.lastInputIsNumber) {
