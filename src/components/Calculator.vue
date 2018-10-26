@@ -5,6 +5,7 @@
         </div>
         <div id="buttons-panel">
             <div class="panel-row">
+                <input type="button" value="0" @click="processNumber('0')" />
                 <input type="button" value="1" @click="processNumber('1')" />
                 <input type="button" value="2" @click="processNumber('2')" />
                 <input type="button" value="3" @click="processNumber('3')" />
@@ -13,19 +14,17 @@
                 <input type="button" value="4" @click="processNumber('4')" />
                 <input type="button" value="5" @click="processNumber('5')" />
                 <input type="button" value="6" @click="processNumber('6')" />
+                <input type="button" value="7" @click="processNumber('7')" />
             </div>
             <div class="panel-row">
-                <input type="button" value="7" @click="processNumber('7')" />
                 <input type="button" value="8" @click="processNumber('8')" />
                 <input type="button" value="9" @click="processNumber('9')" />
             </div>
             <div class="panel-row">
-                <input type="button" value="0" @click="processNumber('0')" />
                 <input type="button" value="+" @click="processPlus" />
+                <input type="button" value="-" @click="processMinus" />
                 <input type="button" value="=" @click="processEqual" />
-            </div>
-            <div class="panel-row">
-                <input type="button" value="C" v-on:click="clearInput" />
+                <input type="button" value="C" @click="clearInput" />
             </div>
         </div>
     </div>
