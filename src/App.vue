@@ -1,15 +1,11 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <!-- <HelloWorld msg="Eureka!!" name="Elijah"/> -->
-    <!-- <Tutorials /> -->
     <Calculator />
   </div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-//import Tutorials from './components/Tutorials.vue'
 import Calculator from './components/Calculator.vue'
 
 export default {
