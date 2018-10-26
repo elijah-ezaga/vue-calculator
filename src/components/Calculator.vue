@@ -5,24 +5,24 @@
         </div>
         <div id="buttons-panel">
             <div class="panel-row">
-                <input type="button" value="1" v-on:click="checkInput" />
-                <input type="button" value="2" v-on:click="checkInput" />
-                <input type="button" value="3" v-on:click="checkInput" />
+                <input type="button" value="1" @click="checkInput('1')" />
+                <input type="button" value="2" @click="checkInput('2')" />
+                <input type="button" value="3" @click="checkInput('3')" />
             </div>
             <div class="panel-row">
-                <input type="button" value="4" v-on:click="checkInput" />
-                <input type="button" value="5" v-on:click="checkInput" />
-                <input type="button" value="6" v-on:click="checkInput" />
+                <input type="button" value="4" @click="checkInput('4')" />
+                <input type="button" value="5" @click="checkInput('5')" />
+                <input type="button" value="6" @click="checkInput('6')" />
             </div>
             <div class="panel-row">
-                <input type="button" value="7" v-on:click="checkInput" />
-                <input type="button" value="8" v-on:click="checkInput" />
-                <input type="button" value="9" v-on:click="checkInput" />
+                <input type="button" value="7" @click="checkInput('7')" />
+                <input type="button" value="8" @click="checkInput('8')" />
+                <input type="button" value="9" @click="checkInput('9')" />
             </div>
             <div class="panel-row">
-                <input type="button" value="0" v-on:click="checkInput" />
-                <input type="button" value="+" v-on:click="checkInput" />
-                <input type="button" value="=" v-on:click="checkInput" />
+                <input type="button" value="0" @click="checkInput('0')" />
+                <input type="button" value="+" @click="checkInput('+')" />
+                <input type="button" value="=" @click="checkInput('=')" />
             </div>
             <div class="panel-row">
                 <input type="button" value="C" v-on:click="clearInput" />
@@ -47,8 +47,7 @@ export default {
         }
     },
     methods: {
-        checkInput: function(event) {
-            let value = event.srcElement.value;
+        checkInput: function(value) {
             if (value === '+') {
                 this.performCalculation = true;
                 if (this.lastInputIsNumber) {
