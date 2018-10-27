@@ -19,12 +19,12 @@
             <div class="panel-row">
                 <input type="button" value="8" @click="processNumber('8')" />
                 <input type="button" value="9" @click="processNumber('9')" />
+                <input type="button" value="Reset" @click="reset" />
             </div>
             <div class="panel-row">
                 <input type="button" value="+" @click="performArithmetic('+')" />
                 <input type="button" value="-" @click="performArithmetic('-')" />
                 <input type="button" value="=" @click="performArithmetic('=')" />
-                <input type="button" value="C" @click="clearInput" />
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@ export default {
             this.lastInputIsNumber = true;
         },
 
-        clearInput: function() {
+        reset: function() {
             this.result = EMPTY;
             this.buffer = ZERO;
             this.performCalculation = false;
