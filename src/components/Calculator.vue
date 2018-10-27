@@ -21,8 +21,8 @@
                 <input type="button" value="9" @click="processNumber('9')" />
             </div>
             <div class="panel-row">
-                <input type="button" value="+" @click="processPlus" />
-                <input type="button" value="-" @click="processMinus" />
+                <input type="button" value="+" @click="performArithmetic('+')" />
+                <input type="button" value="-" @click="performArithmetic('-')" />
                 <input type="button" value="=" @click="processEqual" />
                 <input type="button" value="C" @click="clearInput" />
             </div>
@@ -42,6 +42,7 @@ export default {
             buffer: ZERO,
             result: EMPTY,
             performCalculation: false,
+            lastOperator: null,
             lastInputIsNumber: false
         }
     },
@@ -51,8 +52,8 @@ export default {
 
             let character = event.key;
             if (isNaN(character)) {
-                if (character === '+'){
-                    this.processPlus();
+                if (character === '+' || character === '-'){
+                    this.performArithmetic(character);
                 } else if (character === '=') {
                     this.processEqual();
                 } else if(event.keyCode === 13) {
@@ -63,14 +64,29 @@ export default {
             }
         },
 
-        processPlus: function() {
+        performArithmetic: function(operator) {
             this.performCalculation = true;
             if (this.lastInputIsNumber) {
-                this.buffer += parseFloat(this.result);
+                this.performLastArithmetic(operator);
                 this.result = this.buffer;
             }
 
             this.lastInputIsNumber = false;
+        },
+
+        performLastArithmetic: function(operator) {
+            switch (this.lastOperator) {
+                case '+':
+                    this.buffer += parseFloat(this.result);
+                    break;
+                case '-':
+                    this.buffer -= parseFloat(this.result);
+                    break;
+                default:
+                    this.buffer = this.result * 1;
+            }
+
+            this.lastOperator = operator;
         },
 
         processEqual: function() {
