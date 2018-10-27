@@ -23,7 +23,7 @@
             <div class="panel-row">
                 <input type="button" value="+" @click="performArithmetic('+')" />
                 <input type="button" value="-" @click="performArithmetic('-')" />
-                <input type="button" value="=" @click="processEqual" />
+                <input type="button" value="=" @click="performArithmetic('=')" />
                 <input type="button" value="C" @click="clearInput" />
             </div>
         </div>
@@ -33,6 +33,9 @@
 <script>
 const ZERO = 0;
 const EMPTY = '';
+const PLUS = '+';
+const MINUS = '-';
+const EQUAL = '=';
 
 export default {
     name: 'Calculator',
@@ -52,12 +55,10 @@ export default {
 
             let character = event.key;
             if (isNaN(character)) {
-                if (character === '+' || character === '-'){
+                if (character === PLUS || character === MINUS){
                     this.performArithmetic(character);
-                } else if (character === '=') {
-                    this.processEqual();
-                } else if(event.keyCode === 13) {
-                    this.processEqual();
+                } else if (character === EQUAL || event.keyCode === 13) {
+                    this.performArithmetic(EQUAL);
                 }
             } else {
                 this.processNumber(character);
@@ -66,7 +67,7 @@ export default {
 
         performArithmetic: function(operator) {
             this.performCalculation = true;
-            if (this.lastInputIsNumber) {
+            if (this.lastInputIsNumber || this.lastOperator === EQUAL) {
                 this.performLastArithmetic(operator);
                 this.result = this.buffer;
             }
@@ -76,23 +77,20 @@ export default {
 
         performLastArithmetic: function(operator) {
             switch (this.lastOperator) {
-                case '+':
+                case PLUS:
                     this.buffer += parseFloat(this.result);
                     break;
-                case '-':
+                case MINUS:
                     this.buffer -= parseFloat(this.result);
+                    break;
+                case EQUAL:
+                    // No operation
                     break;
                 default:
                     this.buffer = this.result * 1;
             }
 
             this.lastOperator = operator;
-        },
-
-        processEqual: function() {
-            this.result = this.buffer + parseFloat(this.result);
-            this.buffer = ZERO;
-            this.lastInputIsNumber = false;
         },
 
         processNumber: function(value) {
@@ -116,6 +114,8 @@ export default {
             this.result = EMPTY;
             this.buffer = ZERO;
             this.performCalculation = false;
+            this.lastInputIsNumber = false;
+            this.lastOperator = null;
         }
     }
 }
