@@ -77,6 +77,10 @@ export default {
             if (this.lastInputIsNumber || this.lastOperator === EQUAL) {
                 this.performLastArithmetic(operator);
                 this.result = this.buffer;
+            } else {
+                // Take the most recent operator in a chain of
+                // operators as the last
+                this.lastOperator = operator;
             }
 
             this.lastInputIsNumber = false;
