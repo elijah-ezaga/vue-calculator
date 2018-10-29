@@ -21,5 +21,5 @@ yarn-error.log*
 *.sw*
 
 # Semantic UI
-/semantic
+public/semantic
 semantic.json

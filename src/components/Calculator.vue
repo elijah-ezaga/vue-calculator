@@ -1,30 +1,38 @@
 <template>
     <div id="calculator">
-        <div id="io-display">
+        <div id="io-display" class="ui large input">
             <input type="text" v-model="result" @keypress="processKeyPress" />
         </div>
         <div id="buttons-panel">
             <div class="panel-row">
-                <input type="button" value="0" @click="processNumber('0')" />
-                <input type="button" value="1" @click="processNumber('1')" />
-                <input type="button" value="2" @click="processNumber('2')" />
-                <input type="button" value="3" @click="processNumber('3')" />
+                <button class="circular ui medium button" @click="processNumber('0')">0</button>
+                <button class="circular ui medium button" @click="processNumber('1')">1</button>
+                <button class="circular ui medium button" @click="processNumber('2')">2</button>
+                <button class="circular ui medium button" @click="processNumber('3')">3</button>
             </div>
             <div class="panel-row">
-                <input type="button" value="4" @click="processNumber('4')" />
-                <input type="button" value="5" @click="processNumber('5')" />
-                <input type="button" value="6" @click="processNumber('6')" />
-                <input type="button" value="7" @click="processNumber('7')" />
+                <button class="circular ui medium button" @click="processNumber('4')">4</button>
+                <button class="circular ui medium button" @click="processNumber('5')">5</button>
+                <button class="circular ui medium button" @click="processNumber('6')">6</button>
+                <button class="circular ui medium button" @click="processNumber('7')">7</button>
             </div>
             <div class="panel-row">
-                <input type="button" value="8" @click="processNumber('8')" />
-                <input type="button" value="9" @click="processNumber('9')" />
-                <input type="button" value="Reset" @click="reset" />
+                <button class="circular ui medium button" @click="processNumber('8')">8</button>
+                <button class="circular ui medium button" @click="processNumber('9')">9</button>
             </div>
             <div class="panel-row">
-                <input type="button" value="+" @click="performArithmetic('+')" />
-                <input type="button" value="-" @click="performArithmetic('-')" />
-                <input type="button" value="=" @click="performArithmetic('=')" />
+                <button class="circular ui medium button" @click="performArithmetic('+')">
+                    +
+                </button>
+                <button class="circular ui medium button" @click="performArithmetic('-')">
+                    -
+                </button>
+                <button class="circular ui medium button" @click="performArithmetic('=')">
+                    =
+                </button>
+                <button class="circular ui medium button" @click="reset">
+                    C
+                </button>
             </div>
         </div>
     </div>
@@ -121,9 +129,17 @@ export default {
 </script>
 
 <style scoped>
+#io-display {
+    margin-bottom: 4px;
+}
+
 #io-display input {
     text-align: center;
     font-weight: bold;
+}
+
+.panel-row {
+    margin-bottom: 2px;
 }
 
 .panel-row input {
