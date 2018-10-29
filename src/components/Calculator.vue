@@ -5,32 +5,32 @@
         </div>
         <div id="buttons-panel">
             <div class="panel-row">
-                <button class="circular ui medium button" @click="processNumber('0')">0</button>
-                <button class="circular ui medium button" @click="processNumber('1')">1</button>
-                <button class="circular ui medium button" @click="processNumber('2')">2</button>
-                <button class="circular ui medium button" @click="processNumber('3')">3</button>
+                <button data-input="0" class="circular ui medium button" @click="processNumber('0')">0</button>
+                <button data-input="1" class="circular ui medium button" @click="processNumber('1')">1</button>
+                <button data-input="2" class="circular ui medium button" @click="processNumber('2')">2</button>
+                <button data-input="3" class="circular ui medium button" @click="processNumber('3')">3</button>
             </div>
             <div class="panel-row">
-                <button class="circular ui medium button" @click="processNumber('4')">4</button>
-                <button class="circular ui medium button" @click="processNumber('5')">5</button>
-                <button class="circular ui medium button" @click="processNumber('6')">6</button>
-                <button class="circular ui medium button" @click="processNumber('7')">7</button>
+                <button data-input="4" class="circular ui medium button" @click="processNumber('4')">4</button>
+                <button data-input="5" class="circular ui medium button" @click="processNumber('5')">5</button>
+                <button data-input="6" class="circular ui medium button" @click="processNumber('6')">6</button>
+                <button data-input="7" class="circular ui medium button" @click="processNumber('7')">7</button>
             </div>
             <div class="panel-row">
-                <button class="circular ui medium button" @click="processNumber('8')">8</button>
-                <button class="circular ui medium button" @click="processNumber('9')">9</button>
+                <button data-input="8" class="circular ui medium button" @click="processNumber('8')">8</button>
+                <button data-input="9" class="circular ui medium button" @click="processNumber('9')">9</button>
             </div>
             <div class="panel-row">
-                <button class="circular ui medium button" @click="performArithmetic('+')">
+                <button data-input="+" class="circular ui medium button" @click="performArithmetic('+')">
                     +
                 </button>
-                <button class="circular ui medium button" @click="performArithmetic('-')">
+                <button data-input="-" class="circular ui medium button" @click="performArithmetic('-')">
                     -
                 </button>
-                <button class="circular ui medium button" @click="performArithmetic('=')">
+                <button data-input="=" class="circular ui medium button" @click="performArithmetic('=')">
                     =
                 </button>
-                <button class="circular ui medium button" @click="reset">
+                <button data-input="reset" class="circular ui medium button" @click="reset">
                     C
                 </button>
             </div>

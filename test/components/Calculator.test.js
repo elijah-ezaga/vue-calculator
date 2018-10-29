@@ -6,7 +6,7 @@ describe('Vue Calculator', () => {
     /**
      * @returns A button bearing some text on it.
      */
-    const findButton = (wrapper, text) => wrapper.find('input[value="' + text + '"');
+    const findButton = (wrapper, text) => wrapper.find('button[data-input="' + text + '"');
 
     /**
      * Simulate click on a button.
@@ -16,7 +16,7 @@ describe('Vue Calculator', () => {
     /**
      * Simulate click reset button
      */
-    const reset = wrapper => clickButton(findButton(wrapper, 'Reset'));
+    const reset = wrapper => clickButton(findButton(wrapper, 'reset'));
 
     /**
      * Test that numeric inputs with length
