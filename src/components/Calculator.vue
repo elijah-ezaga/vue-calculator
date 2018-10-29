@@ -41,7 +41,6 @@ export default {
     name: 'Calculator',
     data: function() {
         return {
-            input: EMPTY,
             buffer: ZERO,
             result: EMPTY,
             performCalculation: false,
