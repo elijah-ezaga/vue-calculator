@@ -19,16 +19,20 @@ describe('Vue Calculator', () => {
     const reset = wrapper => clickButton(findButton(wrapper, 'reset'));
 
     /**
-     * Execute an arithmetic expression from inputs
+     * Enters an arithmetic expression from inputs with option to execute
+     * @param {Object} wrapper
      * @param {*} inputs Array of numeric and operator inputs in sequence
      *                   e.g. [1,+,2]
+     * @param {boolean} execute True if to click = sign otherwise false.
      */
-    const executeExpression = (wrapper, inputs) => {
+    const enterExpression = (wrapper, inputs, execute = true) => {
         for (let i = 0; i < inputs.length; ++i) {
             clickButton(findButton(wrapper, inputs[i]));
         }
 
-        clickButton(findButton(wrapper, '='));
+        if (execute) {
+            clickButton(findButton(wrapper, '='));
+        }
     }
 
     /**
@@ -39,19 +43,14 @@ describe('Vue Calculator', () => {
         const wrapper = mount(Calculator);
 
         // test that 000 -> 0
-        const zeroButton = findButton(wrapper, '0');
-        clickButton(zeroButton);
-        clickButton(zeroButton);
-        clickButton(zeroButton);
+        enterExpression(wrapper, ['0', '0', '0'], false);
         // preferred to asserting the value on the text input UI
         expect(wrapper.vm.result).toBe('0');
         expect(wrapper.vm.result.length).toBe(1);
 
         // test that 001 -> 1
         reset(wrapper);
-        clickButton(zeroButton);
-        clickButton(zeroButton);
-        clickButton(findButton(wrapper, '1'));
+        enterExpression(wrapper, ['0', '0', '1'], false);
         expect(wrapper.vm.result).toBe('1');
         expect(wrapper.vm.result.length).toBe(1);
     });
@@ -66,13 +65,13 @@ describe('Vue Calculator', () => {
 
         // 4 + 5 - 2 = 1
         let inputs = ['4', '+', '-', '5', '-', '+', '2'];
-        executeExpression(wrapper, inputs);
+        enterExpression(wrapper, inputs);
         expect(wrapper.vm.result).toBe(1);
 
         // 100 - 30 + 20 - 85 = 5
         reset(wrapper);
         inputs = ['1', '0', '0', '-', '3', '0', '+', '2', '0', '-', '+', '-', '8', '5'];
-        executeExpression(wrapper, inputs);
+        enterExpression(wrapper, inputs);
         expect(wrapper.vm.result).toBe(5);
     })
 
