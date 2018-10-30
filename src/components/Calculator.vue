@@ -19,6 +19,7 @@
             <div class="panel-row">
                 <button data-input="8" class="circular ui medium button" @click="processNumber('8')">8</button>
                 <button data-input="9" class="circular ui medium button" @click="processNumber('9')">9</button>
+                <button data-input="-/+" class="circular ui medium button" @click="processNegate('-/+')">-/+</button>
             </div>
             <div class="panel-row">
                 <button data-input="+" class="circular ui medium button" @click="performArithmetic('+')">
@@ -119,6 +120,18 @@ export default {
             }
 
             this.lastInputIsNumber = true;
+        },
+
+        processNegate: function() {
+            if (this.result === EMPTY || this.result === '0') {
+                return;
+            }
+
+            if( this.result.charAt(0) !== '-') {
+                this.result = '-' + this.result;
+            } else {
+                this.result = this.result.substr(1);
+            }
         },
 
         reset: function() {
