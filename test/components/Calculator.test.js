@@ -73,6 +73,19 @@ describe('Vue Calculator', () => {
         inputs = ['1', '0', '0', '-', '3', '0', '+', '2', '0', '-', '+', '-', '8', '5'];
         enterExpression(wrapper, inputs);
         expect(wrapper.vm.result).toBe(5);
-    })
+    });
 
+    /**
+     * Test that we can switch between positive and negative
+     * value of a number.
+     */
+    it('Should toggle negation of numeric input', () => {
+        const wrapper = mount(Calculator);
+
+        enterExpression(wrapper, ['4', '-/+'], false);
+        expect(wrapper.vm.result.startsWith('-')).toBe(true);
+
+        enterExpression(wrapper, ['-/+'], false);
+        expect(wrapper.vm.result.startsWith('-')).toBe(false);
+    })
 });
